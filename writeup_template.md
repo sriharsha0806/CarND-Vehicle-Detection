@@ -16,8 +16,8 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 [image1]: ./examples/car_not_car.png
-[image2]: ./examples/HOG_example.jpg
-[image3]: ./examples/sliding_windows.jpg
+[image2]: .figure2.png
+[image3]: figure1.png
 [image4]: ./examples/sliding_window.jpg
 [image5]: ./examples/bboxes_and_heat.png
 [image6]: ./examples/labels_map.png
@@ -38,8 +38,7 @@ You're reading it!
 
 ####1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
-The code for this step is contained in the first code cell of the IPython notebook (or in lines # through # of the file called `some_file.py`).  
-
+The code for this step is contained in the fifth code cell of the IPython notebook of main.
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
 
 ![alt text][image1]
@@ -53,11 +52,13 @@ Here is an example using the `YCrCb` color space and HOG parameters of `orientat
 
 ####2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters and...
+I tried various combinations of parameters and my code for same parameters as mentioned above excpet for colorspace which is  rgb is recognizing the vehicles for a few occasions in video. In test_images it is reconizing the front end of driving car. I tried changing various parameters and cropped the image. The result is my alogrithm is unable to recognize cars present in test_images.
 
 ####3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using...
+I trained a linear SVM using three features. They are spatial_binning, histogram and HOG features. I wanted to implement decision features as mentioned by arpan in videos to reduce the feature vector further.
+
+Feature vector length: 6108
 
 ###Sliding Window Search
 
@@ -69,7 +70,7 @@ I decided to search random window positions at random scales all over the image 
 
 ####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
+Ultimately I searched on several scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which is not providing a nice result.  (Here are some example images:)
 
 ![alt text][image4]
 ---
@@ -104,5 +105,4 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 ####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
-
+I tried to change and see if my algorithm is able to recover any cars from the test image as much as possible. My algorithm is not robust. It is still able to recognize the car in video frames in a few occasions.  Please where i can improve the algorithm. The SVC accuracy for various parameters is ranging from 99.35 to 99.55. Initially i thought it is overfitting, but to my surprise it not able to recognize the cars even after tweaking few parameters. I tried to implement the yolo net. But on my system i am getting Resource Error when uploading the weights. The bandwidth or storage of GPU is not sufficient and i am unable to upload yolo-weights to jupyter notebook for working in aws environment. Please let me know how i can improve and build a robust algorithm.
