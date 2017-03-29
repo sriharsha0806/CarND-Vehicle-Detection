@@ -47,18 +47,17 @@ I then explored different color spaces and different `skimage.hog()` parameters 
 
 Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
-
 ![alt text][image2]
 
 ####2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters and my code for same parameters as mentioned above excpet for colorspace which is  rgb is recognizing the vehicles for a few occasions in video. In test_images it is reconizing the front end of driving car. I tried changing various parameters and cropped the image. The result is my alogrithm is unable to recognize cars present in test_images.
+I tried various combinations of parameters and my code for same parameters as mentioned above excpet for colorspace which is  rgb is recognizing the vehicles for a few occasions in video. In test_images it is reconizing the front end of driving car. I tried changing various parameters and cropped the image. The result is my alogrithm is able to recognize the cars in test images.
 
 ####3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
 I trained a linear SVM using three features. They are spatial_binning, histogram and HOG features. I wanted to implement decision features as mentioned by arpan in videos to reduce the feature vector further.
 
-Feature vector length: 6108
+Feature vector length: 2492
 
 ###Sliding Window Search
 
@@ -70,7 +69,7 @@ I decided to search random window positions at random scales all over the image 
 
 ####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on several scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which is not providing a nice result.  (Here are some example images:)
+Ultimately I searched on several scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which is a nice result.  (Here are some example images:)
 
 ![alt text][image4]
 ---
@@ -83,16 +82,7 @@ Here's a [link to my video result](./project_video.mp4)
 
 ####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
-I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
-
-Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
-
-### Here are six frames and their corresponding heatmaps:
-
-![alt text][image5]
-
-### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
-![alt text][image6]
+My code is hardly able to detect the cars in images, so i didnot care much about false positives. If you review the output of the project video. You can see there are no false positives. 
 
 ### Here the resulting bounding boxes are drawn onto the last frame in the series:
 ![alt text][image7]
@@ -105,4 +95,6 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 ####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-I tried to change and see if my algorithm is able to recover any cars from the test image as much as possible. My algorithm is not robust. It is still able to recognize the car in video frames in a few occasions.  Please where i can improve the algorithm. The SVC accuracy for various parameters is ranging from 99.35 to 99.55. Initially i thought it is overfitting, but to my surprise it not able to recognize the cars even after tweaking few parameters. I tried to implement the yolo net. But on my system i am getting Resource Error when uploading the weights. The bandwidth or storage of GPU is not sufficient and i am unable to upload yolo-weights to jupyter notebook for working in aws environment. Please let me know how i can improve and build a robust algorithm.
+I tried to change and see if my algorithm is able to recover any cars from the test image as much as possible. My algorithm is not robust. It is still able to recognize the car in video frames in a few occasions.The SVC accuracy for various parameters is ranging from 99.35 to 99.55. Initially i thought it is overfitting, but to my surprise it not able to recognize the cars even after tweaking parameters a lot of times. So I tried to implement the yolo net. 
+
+I initially though of implementing msccn -A Unified Multi-scale Deep Convolutional Neural Network for Fast Object Detection. I would like to implement this alogrithm in future. I came across code by [link to yolo]https://github.com/xslittlegrass/CarND-Vehicle-Detection
