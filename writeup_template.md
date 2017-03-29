@@ -74,9 +74,7 @@ I decided to search random window positions at random scales all over the image 
 
 ####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on several scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which is a nice result.  (Here are some example images:)
-
-![alt text][image4]
+Ultimately I searched on several scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which is a nice result providing me nice results.
 ---
 
 ### Video Implementation
