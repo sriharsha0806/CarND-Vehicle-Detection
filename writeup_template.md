@@ -50,7 +50,7 @@ I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an 
 
 I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
 
-Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
+Here is an example using the `RGB` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
 ![alt text][image2]
 
@@ -82,7 +82,7 @@ Ultimately I searched on several scales using YCrCb 3-channel HOG features plus 
 ### Video Implementation
 
 ####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./project_output.mp4)
 
 
 ####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
@@ -171,13 +171,17 @@ The structure of the 1470 length tensor is as follows:
 
 ![alt text][image9]
 
+The results of the algorithm are shown below
+![alt text][image10] 
+and the final video output is [link to my video result](./project_video_output.mp4)
+
 ---
 
 ###Discussion
 
 ####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-I tried to change and see if my algorithm is able to recover any cars from the test image as much as possible. My algorithm is not robust. It is still able to recognize the car in video frames in a few occasions.The SVC accuracy for various parameters is ranging from 99.35 to 99.55. Initially i thought it is overfitting, but to my surprise it not able to recognize the cars even after tweaking parameters a lot of times. So I tried to implement the yolo net. 
+I tried to change and see if my classical algorithm is able to recover any cars from the test image as much as possible. My algorithm is not robust. It is still able to recognize the car in video frames in a few occasions.The SVC accuracy for various parameters is ranging from 99.35 to 99.55. Initially i thought it is overfitting, but to my surprise it not able to recognize the cars even after tweaking parameters a lot of times. So I tried to implement the yolo net. The yolo net can be  further speed up by pruning. Regarding classical methods, This project has also made me realize the importance of parallel computing. I want to implement the project using parallel computing and try to improve the performance of time. The color space analysis provided by the videos is not sufficient for me to analyze which colorspace i should proceed with. 
 
 ## Reference
 
