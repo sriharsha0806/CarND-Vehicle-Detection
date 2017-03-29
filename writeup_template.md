@@ -26,7 +26,7 @@ The goals / steps of this project are the following:
 [video2]: ./project_output.mp4
 [video3]: ./project_video_output.mp4
 [image8]: ./mode_yolo_plot.jpg
-[image9]: ./net_output.jpg
+[image9]: ./net_output.png
 [imag10]: ./download.png
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/513/view) Points
